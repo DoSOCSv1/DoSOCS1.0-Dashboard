@@ -1,5 +1,5 @@
 
-<h1 class="bold">Docs</h1>
+<h1 class="bold">SPDX Docs List</h1>
 		<div class="input-group searchbar" style="float: left; width: 87.5%;">
 			<span class="input-group-addon">Search</span>
 			<input type="text" class="form-control" onkeyup="filter(this, 'spdx_doc_list', 1)" placeholder="Document Name">

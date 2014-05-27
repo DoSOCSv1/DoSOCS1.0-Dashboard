@@ -85,38 +85,13 @@
       </div>
     </div>
     <div class="container">
-		
-        <!-- Placeholder for dashboard views -->
-		<?php 
-		
-		if(array_key_exists('action',$_POST)){
-		    if($_POST["action"] == "update"){
-			 $docs = "UPDATE spdx_docs " .
-                  "SET document_comment='" .  $_POST["document_comment"] ."'".
-                  " WHERE id=" . $_POST["doc_id"];
-				  
-			$con=mysqli_connect("localhost","root","","spdx");
-			// Check connection
-			if (mysqli_connect_errno())
-			  {
-			  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			  }
-			mysqli_query($con,$docs);
-			mysqli_close($con);
-			include 'spdx_docview.php';			
-			}
-		}
-		else if(array_key_exists('doc_id',$_GET)){
-			include 'spdx_docview.php';
-		}else{
-				include 'spdx_listview.php';
-		}
-		
-		
-		?>
-	    
-    </div> 
-    <div class='container'>
+    
+<p>FOSSology+SPDX aims to support the advancement of tooling to produce SPDX documents from the FOSSology open source package scanner. This tool supports the integration of the SPDX standard into current license scanning practices. SPDX or The Software Package Data Exchange specification is a standard format for communicating the components, licenses and copyrights associated with a software package (http://spdx.org/ 2014). FOSSology is a source code scanning tool used to identify license and copyright.</p>
+<p>The University of Nebraska at Omaha Open Systems development class is currently creating other tools to facilitate the use of SPDX documents for the business setting. These tools include a web based dashboard to view SPDX documents in a more user friendly way. Another tool the class has been developing is the SPDX Product History Utility, which will allow business to associate products with software packages in order to inventory which software licenses and copyrights are on their products.</p>
+
+
+</div> 
+    <div class='container' align='center'>
       <footer>
         <p>&copy; University of Nebraska at Omaha 2014<p>
       </footer>
