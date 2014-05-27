@@ -74,9 +74,9 @@
       <a class="navbar-brand" href="http://spdxhub.ist.unomaha.edu/">SPDX Hub</a>
       <a class="navbar-brand" href="https://fossologyspdx.ist.unomaha.edu/" target="_blank">Fossology+SPDX</a>
       <a class="navbar-brand" href="Home.php">About</a>
-      <div class="pull-right" ng-controller="pluginCtrl">
+     <!--  <div class="pull-right" ng-controller="pluginCtrl">
           <a class="navbar-brand" ng-repeat="plugin in plugins" ng-if="plugin.active" ng-href="{{plugin.url}}">{{plugin.name}}</a>
-      </div>
+      </div> -->
           <div class="container-fluid nav-collapse">
             <ul class="nav">
             </ul>
