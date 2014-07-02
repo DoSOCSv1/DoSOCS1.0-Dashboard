@@ -71,7 +71,7 @@
             <span class="icon-bar"></span>
           </a>
 	  <a class="navbar-brand" href="spdx.php">Home</a>
-      <a class="navbar-brand" href="http://spdxhub.ist.unomaha.edu/">SPDX Hub</a>
+      <a class="navbar-brand" href="http://spdxhub.ist.unomaha.edu/" target="_blank">SPDX Hub</a>
       <a class="navbar-brand" href="https://fossologyspdx.ist.unomaha.edu/" target="_blank">Fossology+SPDX</a>
       <a class="navbar-brand" href="Home.php">About</a>
      <!--  <div class="pull-right" ng-controller="pluginCtrl">

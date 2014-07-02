@@ -14,50 +14,7 @@
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
-    <script type="text/javascript">
-	
-	function filter (term, _id, cellNr){
-	var suche = term.value.toLowerCase();
-	var table = document.getElementById(_id);
-	var ele;
-	for (var r = 0; r < table.rows.length; r++){
-		ele = table.rows[r].cells[cellNr].innerHTML.replace(/<[^>]+>/g,"");
-		if (ele.toLowerCase().indexOf(suche)>=0 )
-			table.rows[r].style.display = '';
-		else table.rows[r].style.display = 'none';
-	}
-	}
-	function hideCol(col) {
-	         
-			 if(col == 1){
-			 document.getElementById("save_top").style.display="none";
-			 document.getElementById("save_bottom").style.display="none";
-			 }
-			 else{
-			 document.getElementById("save_top").style.display="";
-			 document.getElementById("save_bottom").style.display="";
-			 document.getElementById("edit_doc").style.display="none";
-			 }
-             var tbl = document.getElementById("tblMain");
-
-                for (var i = 1; i < tbl.rows.length; i++) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-
-                        tbl.rows[i].cells[j].style.display = "";
-                        if(tbl.rows[i].cells[j].innerHTML == 'File Name')
-						 return;
-                        if (j == col)
-
-                            tbl.rows[i].cells[j].style.display = "none";
-						
-
-                    }
-
-                }
-
-            }
-	</script>
+    <script type="text/javascript" src="js/common.js"></script>
 	
   </head>
   <body onload="hideCol(1);">
@@ -71,12 +28,9 @@
             <span class="icon-bar"></span>
           </a>
 	  <a class="navbar-brand" href="spdx.php">Home</a>
-      <a class="navbar-brand" href="http://spdxhub.ist.unomaha.edu/">SPDX Hub</a>
+      <a class="navbar-brand" href="http://spdxhub.ist.unomaha.edu/" target="_blank">SPDX Hub</a>
       <a class="navbar-brand" href="https://fossologyspdx.ist.unomaha.edu/" target="_blank">Fossology+SPDX</a>
-      <a class="navbar-brand" href="About.php">About</a>
-    <!--   <div class="pull-right" ng-controller="pluginCtrl">
-          <a class="navbar-brand" ng-repeat="plugin in plugins" ng-if="plugin.active" ng-href="{{plugin.url}}">{{plugin.name}}</a>
-      </div> -->
+       <a class="navbar-brand" href="About.php">About</a>    
           <div class="container-fluid nav-collapse">
             <ul class="nav">
             </ul>
@@ -89,27 +43,10 @@
         <!-- Placeholder for dashboard views -->
 		<?php 
 		
-		if(array_key_exists('action',$_POST)){
-		    if($_POST["action"] == "update"){
-			 $docs = "UPDATE spdx_docs " .
-                  "SET document_comment='" .  $_POST["document_comment"] ."'".
-                  " WHERE id=" . $_POST["doc_id"];
-				  
-			$con=mysqli_connect("localhost","root","","spdx");
-			// Check connection
-			if (mysqli_connect_errno())
-			  {
-			  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			  }
-			mysqli_query($con,$docs);
-			mysqli_close($con);
-			include 'spdx_docview.php';			
-			}
-		}
-		else if(array_key_exists('doc_id',$_GET)){
+		if(array_key_exists('doc_id',$_GET)){
 			include 'spdx_docview.php';
 		}else{
-				include 'spdx_listview.php';
+			include 'spdx_listview.php';
 		}
 		
 		

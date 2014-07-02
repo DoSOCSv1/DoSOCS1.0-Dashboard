@@ -1,5 +1,5 @@
 
-<h1 class="bold">SPDX Docs List</h1>
+<h1 class="bold">Docs</h1>
 		<div class="input-group searchbar" style="float: left; width: 87.5%;">
 			<span class="input-group-addon">Search</span>
 			<input type="text" class="form-control" onkeyup="filter(this, 'spdx_doc_list', 1)" placeholder="Document Name">
@@ -17,7 +17,7 @@
 			  }
 
 
-			$query = "select id,upload_file_name,created_at from spdx_docs";
+			$query = "select id,upload_file_name,created_at from spdx_docs order by created_at desc";
 
 			$result = mysqli_query($con,$query);
 				echo "<table id=\"spdx_doc_list\" class=\"table table-bordered table-spdx\"><tbody>";
