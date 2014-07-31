@@ -10,7 +10,7 @@
 		echo 		'<link href="css/dashboard.css" rel="stylesheet">';
 		echo 		'<link href="css/bootstrap.css" rel="stylesheet">';
 		echo 		'<link href="css/bootstrap-theme.css" rel="stylesheet">';
-		echo 		'<script type="text/javascript" src="js/common.js"></script>';
+		echo 		'<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>';
 		echo	'</head>';
 		echo 	'<body>';
 		//NavBar
@@ -22,7 +22,7 @@
 		echo 						'<span class="icon-bar"></span>';
 		echo						'<span class="icon-bar"></span>';
 		echo 					'</a>';
-		echo 					'<a class="navbar-brand" href="spdx.php">Home</a>';
+		echo 					'<a class="navbar-brand" href="index.php">Home</a>';
 		echo 					'<a class="navbar-brand" href="http://spdxhub.ist.unomaha.edu/" target="_blank">SPDX Hub</a>';
 		echo 					'<a class="navbar-brand" href="https://fossologyspdx.ist.unomaha.edu/" target="_blank">Fossology+SPDX</a>';
 		echo 					'<a class="navbar-brand" href="About.php">About</a>';
