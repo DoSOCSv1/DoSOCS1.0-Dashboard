@@ -3,138 +3,155 @@
     include("function/package_files.php");
     
     $fileId = $_GET['file_id'];
+    $spdxDocId = $_GET['doc_id'];
     
     incHeader("File");
-    
+    if(array_key_exists('action',$_POST)){
+        if($_POST["action"] == "update"){
+            updateFile($fileId,
+                       $_POST["file_copyright_text"],
+                       $_POST["artifact_of_project_name"],
+                       $_POST["artifact_of_project_homepage"],
+                       $_POST["artifact_of_project_uri"],
+                       $_POST["license_concluded"],
+                       $_POST["license_info_in_file"],
+                       $_POST["license_comments"],
+                       $_POST["file_notice"],
+                       $_POST["file_contributor"],
+                       $_POST["file_dependency"],
+                       $_POST["file_comment"]);
+        }
+    }
     $file = mysql_fetch_assoc(getPackageFile($fileId));
 ?>
 <script>
-	$(document).on('click','#edit_doc', function() {
-		$('.edit').show();
-		$('.view').hide();
-	});
+    $(document).on('click','#edit_doc', function() {
+        $('.edit').show();
+        $('.view').hide();
+    });
 </script>
 <div class="container">
-	<?php 
-		if(array_key_exists('action',$_POST)) {
-        	if($_POST["action"] == "update") {
-				echo '<div align="center"><h4><p class="text-success">Successfully Updated File</p></h4></div>';
-        	}
-		}
-	?>
-    <form id="spdx_form" action="file.php?file_id=<?php echo $fileId; ?>" method="post">
+    <?php 
+        if(array_key_exists('action',$_POST)) {
+            if($_POST["action"] == "update") {
+                echo '<div align="center"><h4><p class="text-success">Successfully Updated File</p></h4></div>';
+            }
+        }
+    ?>
+    <form id="spdx_form" action="file.php?file_id=<?php echo $fileId; ?>&doc_id=<?php echo $spdxDocId;?>" method="post">
         <input type="hidden" name="action" value="update"/>
         <table id="tblMain" class="table table-bordered table-striped table-doc">
             <thead>
                 <tr>
-                    <th colspan=2><?php echo $file["file_name"]; ?></th>
+                    <th colspan=2>
+	                    <?php echo $file["file_name"]; ?>
+	                    <div style="display:inline-block;float:right;">
+	                        <button id="edit_doc"     type="button"  class="btn btn-primary view"/>Edit</button>
+	                        <button id="save_doc"     type="submit"  class="btn btn-primary edit" style="display:none;">Save</button>
+	                    </div>
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>File Type</td>
+                    <td title="Type of this file.">File Type</td>
                     <td class="edit" style="display:none;">
                         <textarea name="file_copyright_text" class='form-control'><?php echo $file["file_copyright_text"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["file_copyright_text"]; ?></td>
                 </tr>
                 <tr>
-                    <td>Artifact Of Project Name</td>
+                    <td title="Project the file has been derived from.">Artifact Of Project Name</td>
                     <td class="edit" style="display:none;">
                         <textarea name="artifact_of_project_name" class='form-control'><?php echo $file["artifact_of_project_name"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["artifact_of_project_name"]; ?></td>
                 </tr>
                 <tr>
-                    <td>Artifact Of Project Homepage</td>
+                    <td title="Location of project from which this file has been derived.">Artifact Of Project Homepage</td>
                     <td class="edit" style="display:none;">
                         <textarea name="artifact_of_project_homepage" class='form-control'><?php echo $file["artifact_of_project_homepage"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["artifact_of_project_homepage"]; ?></td>
                 </tr>
                 <tr>
-                    <td>Artifact Of Project URI</td>
+                    <td title="Link to the project from which this file was derived.">Artifact Of Project URI</td>
                     <td class="edit" style="display:none;">
                         <textarea name="artifact_of_project_uri" class='form-control'><?php echo $file["artifact_of_project_uri"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["artifact_of_project_uri"]; ?></td>
                 </tr>
                 <tr>
-                    <td>License Concluded</td>
+                    <td title="License governing this file.">License Concluded</td>
                     <td class="edit" style="display:none;">
                         <textarea name="license_concluded" class='form-control'><?php echo $file["license_concluded"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["license_concluded"]; ?></td>
                 </tr>
                 <tr>
-                    <td>License Info In File</td>
+                    <td title="Any text found in this file pertaining to the license.">License Info In File</td>
                     <td class="edit" style="display:none;">
                         <textarea name="license_info_in_file" class='form-control'><?php echo $file["license_info_in_file"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["license_info_in_file"]; ?></td>
                 </tr>
                 <tr>
-                    <td>File Checksum</td>
-                    <td class="edit" style="display:none;">
-                        <textarea name="file_checksum" class='form-control'><?php echo $file["file_checksum"]; ?></textarea>
-                    </td>
-                    <td class="view"><?php echo $file["file_checksum"]; ?></td>
+                    <td title="Unique identifier of this file.">File Checksum</td>
+                    <td><?php echo $file["file_checksum"]; ?></td>
                 </tr>
                 <tr>
-                    <td>File Checksum Algorithm</td>
-                    <td class="edit" style="display:none;">
-                        <textarea name="file_checksum_algorithm" class='form-control'><?php echo $file["file_checksum_algorithm"]; ?></textarea>
-                    </td>
-                    <td class="view"><?php echo $file["file_checksum_algorithm"]; ?></td>
+                    <td tilte="Algorigthm used to calulate the checksum of this file.">File Checksum Algorithm</td>
+                    <td><?php echo $file["file_checksum_algorithm"]; ?></td>
                 </tr>
                 <tr>
-                	<td>Relative Path</td>
-                    <td class="edit" style="display:none;">
-                        <textarea name="relative_path" class='form-control'><?php echo $file["relative_path"]; ?></textarea>
-                    </td>
-                    <td class="view"><?php echo $file["relative_path"]; ?></td>
+                    <td title="Path to this file relative to the root of the pacakge file.">Relative Path</td>
+                    <td><?php echo $file["relative_path"]; ?></td>
                 </tr>
                 <tr>
-                	<td>License Comments</td>
+                    <td title="Any relevant additional license information for this file.">License Comments</td>
                     <td class="edit" style="display:none;">
                         <textarea name="license_comments" class='form-control'><?php echo $file["license_comments"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["license_comments"]; ?></td>
                 </tr>
                 <tr>
-                	<td>File Notice</td>
+                    <td title="Any legal notices found in this file.">File Notice</td>
                     <td class="edit" style="display:none;">
                         <textarea name="file_notice" class='form-control'><?php echo $file["file_notice"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["file_notice"]; ?></td>
                 </tr>
                 <tr>
-                	<td>File Contributor</td>
+                    <td title="Anyone who has contributed to this file.">File Contributor</td>
                     <td class="edit" style="display:none;">
                         <textarea name="file_contributor" class='form-control'><?php echo $file["file_contributor"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["file_contributor"]; ?></td>
                 </tr>
                 <tr>
-                	<td>File Dependency</td>
+                    <td title="References to any files, whithin this package, that this file depends upon.">File Dependency</td>
                     <td class="edit" style="display:none;">
                         <textarea name="file_dependency" class='form-control'><?php echo $file["file_dependency"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["file_dependency"]; ?></td>
                 </tr>
                 <tr>
-                	<td>File Comment</td>
+                    <td title="General comments about this file">File Comment</td>
                     <td class="edit" style="display:none;">
                         <textarea name="file_comment" class='form-control'><?php echo $file["file_comment"]; ?></textarea>
                     </td>
                     <td class="view"><?php echo $file["file_comment"]; ?></td>
                 </tr>
                 <tr>
-                	<td>Created On</td>
+                    <td title="License of this file.">License</td>
+                    <td><a href="license.php?license_id=<?php echo $file['license_id'];?>&doc_id=<?php echo $spdxDocId; ?>"><?php echo $file["license_identifier"]; ?></a></td>
+                </tr>
+                <tr>
+                    <td title="Date this file was added to this SPDX document.">Created On</td>
                     <td><?php echo date('d/j/o', strtotime($file["created_at"])); ?></td>
                 </tr>
                 <tr>
-                	<td>Updated On</td>
+                    <td title="Date this file information  was last updated.">Updated On</td>
                     <td><?php echo date('d/j/o', strtotime($file["updated_at"]));; ?></td>
                 </tr>
             </tbody>
