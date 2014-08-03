@@ -10,8 +10,9 @@
                                  LENGTH( pf.relative_path ) - LENGTH( REPLACE( pf.relative_path,  '/',  '' ) ) AS level,
                                  dfpa.package_id
                  FROM package_files pf
-                       INNER JOIN doc_file_package_associations dfpa ON pf.id = dfpa.package_file_id
-                 WHERE dfpa.spdx_doc_id = " . $spdx_doc_id;
+                      INNER JOIN doc_file_package_associations dfpa ON pf.id = dfpa.package_file_id
+                 WHERE dfpa.spdx_doc_id = " . $spdx_doc_id . "
+                 ORDER BY pf.relative_path";
         
         //Execute Query
         $qryPKGFiles = mysql_query($sql);

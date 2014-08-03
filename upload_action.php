@@ -14,6 +14,8 @@
     $package_description       = $_POST['package_description'];
 
     move_uploaded_file($filePath,"/uploads/$fileName");
+    while (!file_exists("/uploads/$fileName")) sleep(1);
+    
     $commandLine = "/do_spdx/DoSPDX.py --scan --packagePath \"/uploads/$fileName\"";
     if(!empty($document_comment)) {
         $commandLine .= " --documentComment \"$document_comment\"";
@@ -49,6 +51,10 @@
         $commandLine .= " --documentComment \"$package_description\"";
     }
 
-    exec($commandLine);
-    echo "Package uploaded successfully."
+    exec($commandLine . ' --print RDF', $result);
+    echo "Generating Document, depending on the size of the pacakge, this may take a long time.";
+    foreach($result as $key => $value)
+	{
+		echo $key." ".$value."<br>";
+	}
 ?>
