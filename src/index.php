@@ -2,6 +2,10 @@
     include("function/headerfooter.php");
     include("function/spdx_doc.php");
     incHeader("SPDX");
+    $name = "";
+    if(array_key_exists('doc_name',$_POST)) {
+    	$name = $_POST['doc_name'];
+    }
 ?>
     <style>
         table.table button.btn {
@@ -14,8 +18,12 @@
     </style>
     <div class="container">
         <h1 class="bold">Docs</h1>
-        <div style="float: right; width: 11.5%;">
-            <button type="button" class="btn btn-primary" onclick="window.location='upload.php'">Upload Package</button>
+        <div style="width:100%;">
+        	<form action="index.php" method="post" style="width:100%;">
+        		<input type="text" class="form-control" tabindex="1" autofocus="autofocus" style="display:inline-block;width:70%;" placeholder="Search" value="<?php echo $name; ?>" name="doc_name"/>
+        		<button type="submit" class="btn" style="display: inline-block;width:11.5%;margin-left:25px;">Search</button>
+        		<button type="button" class="btn btn-primary" onclick="window.location='upload.php'" style="display:inline-block;width:11.5%;margin-left:10px;">Upload Package</button>
+        	</form>
         </div>
         <table id="spdx_doc_list" class="table table-striped" >
             <thead>
@@ -28,7 +36,7 @@
             </thead>
             <tbody>
                 <?php
-                    $result = getSPDX_DocList();
+                    $result = getSPDX_DocList($name);
                     while($row = mysql_fetch_assoc($result)) {
                         echo '<tr>';
                         echo     '<td>';

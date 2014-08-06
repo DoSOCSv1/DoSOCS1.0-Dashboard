@@ -66,7 +66,7 @@
         return $qrySPDX_Doc;
     }
 
-    function getSPDX_DocList() {
+    function getSPDX_DocList($name = "") {
         //Create Database connection
         include("Data_Source.php");
         mysql_connect("$host", "$username", "$password")or die("cannot connect server " . mysql_error());
@@ -75,15 +75,18 @@
         $query = "SELECT id,
                          upload_file_name,
                          created_at 
-                  FROM spdx_docs 
-                  ORDER BY created_at ASC";
+                  FROM spdx_docs ";
+
+       	if($name != "") {
+       		$query .= "WHERE upload_file_name LIKE '%" . $name . "%' ";
+       	}
+        $query .= "ORDER BY created_at ASC";
 
         //Execute Query
         $qrySpdxDocs = mysql_query($query);
         
         //Close Connection
         mysql_close();
-        
         return $qrySpdxDocs;
 
     }

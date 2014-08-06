@@ -157,6 +157,9 @@
             </tbody>
         </table>
     </form>
+    <div align="center">
+    	<a href="spdx_doc.php?doc_id=<?php echo $spdxDocId; ?>">Back to Document</a>
+    </div>
 </div>
 <?php
     incFooter();
