@@ -1,0 +1,73 @@
+﻿/* HELPER CLASSES */
+.bold {
+    font-weight: bold;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+/* LIST VIEW TABLE */
+.searchbar {
+    padding-bottom: 10px;
+}
+
+table.table-spdx td.td-timestamp {
+    border-right-color: transparent;
+    padding-top: 0px;
+    padding-left: 0px;
+    font-weight: bold;
+    color: #9da0a4;
+}
+
+table.table-spdx td {
+    text-align: center;
+}
+
+table.table-spdx td.td-main {
+    line-height: 2em;
+    font-size: 2em;
+    padding: 0px;
+    border-left-color: transparent;
+}
+
+table.table-spdx td.td-timestamp p {
+    text-align: center;
+    padding-top: 0px;
+    padding-left: 0px;
+    border: 1px solid #e1e1e8;
+    border-top: none;
+    border-left: none;
+}
+
+.graybox {
+    background-color: #f7f7f9;
+}
+
+table.table-spdx td.td-controls {
+    width: 20%;
+}
+
+/* DOC VIEW */
+table.table-doc th {
+  font-size: 2em;
+}
+
+/* SAVING MODAL */
+.modalemail {
+    margin-bottom: 20px;
+}
+
+/*
+ *  UPLOAD BOX STYLES
+ */
+
+.drop-box {
+    background: none repeat scroll 0 0 #F8F8F8;
+    border: 5px dashed #DDDDDD;
+    height: 65px;
+    padding-top: 35px;
+    padding-bottom: 50px;
+    text-align: center;
+    width: 200px;
+}

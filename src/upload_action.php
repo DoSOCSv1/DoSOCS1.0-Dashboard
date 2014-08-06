@@ -1,22 +1,24 @@
 <?php
+	include("function/headerfooter.php");
+	incHeader("Upload");
     $filePath                   = $_FILES["package"]["tmp_name"];
     $fileName                   = $_FILES["package"]["name"];
-    $document_comment          = $_POST['document_comment'];
+    $document_comment           = $_POST['document_comment'];
     $creator                    = $_POST['creator'];
-    $creator_comment           = $_POST['creator_comment'];
-    $pakage_version            = $_POST['pacakge_version'];
-    $package_supplier          = $_POST['package_supplier'];
-    $package_originator        = $_POST['package_originator'];
-    $package_download_location = $_POST['package_download_location'];
-    $package_home_page           = $_POST['package_home_page'];
+    $creator_comment            = $_POST['creator_comment'];
+    $pakage_version             = $_POST['pacakge_version'];
+    $package_supplier           = $_POST['package_supplier'];
+    $package_originator         = $_POST['package_originator'];
+    $package_download_location  = $_POST['package_download_location'];
+    $package_home_page          = $_POST['package_home_page'];
     $package_source_info        = $_POST['package_source_info'];
-    $package_license_comments  = $_POST['package_license_comments'];
-    $package_description       = $_POST['package_description'];
+    $package_license_comments   = $_POST['package_license_comments'];
+    $package_description        = $_POST['package_description'];
 
-    move_uploaded_file($filePath,"/uploads/$fileName");
-    while (!file_exists("/uploads/$fileName")) sleep(1);
+    move_uploaded_file($filePath,"/var/www/SPDXDash/uploads/$fileName");
+    while (!file_exists("/var/www/SPDXDash/uploads/$fileName")) sleep(1);
     
-    $commandLine = "/do_spdx/DoSPDX.py --scan --packagePath \"/uploads/$fileName\"";
+    $commandLine = "/do_spdx/DoSPDX.py --scan --packagePath \"/var/www/SPDXDash/uploads/$fileName\"";
     if(!empty($document_comment)) {
         $commandLine .= " --documentComment \"$document_comment\"";
     }
@@ -51,10 +53,7 @@
         $commandLine .= " --documentComment \"$package_description\"";
     }
 
-    exec($commandLine . ' --print RDF', $result);
-    echo "Generating Document, depending on the size of the pacakge, this may take a long time.";
-    foreach($result as $key => $value)
-	{
-		echo $key." ".$value."<br>";
-	}
+    shell_exec($commandLine . ' 2>&1');
+    echo "<div align=\"center\">Document sucessfully uploaded.</div>";
+	incFooter();
 ?>

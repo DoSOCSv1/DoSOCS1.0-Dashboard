@@ -23,7 +23,6 @@
         echo                        '<span class="icon-bar"></span>';
         echo                     '</a>';
         echo                     '<a class="navbar-brand" href="index.php">Home</a>';
-        echo                     '<a class="navbar-brand" href="http://spdxhub.ist.unomaha.edu/" target="_blank">SPDX Hub</a>';
         echo                     '<a class="navbar-brand" href="https://fossologyspdx.ist.unomaha.edu/" target="_blank">Fossology+SPDX</a>';
         echo                     '<a class="navbar-brand" href="About.php">About</a>';
         echo                     '<div class="container-fluid nav-collapse">';
