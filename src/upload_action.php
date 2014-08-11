@@ -15,10 +15,10 @@
     $package_license_comments   = $_POST['package_license_comments'];
     $package_description        = $_POST['package_description'];
 
-    move_uploaded_file($filePath,"/var/www/SPDXDash/uploads/$fileName");
-    while (!file_exists("/var/www/SPDXDash/uploads/$fileName")) sleep(1);
+    move_uploaded_file($filePath,"uploads/$fileName");
+    while (!file_exists("uploads/$fileName")) sleep(1);
     
-    $commandLine = "/do_spdx/DoSPDX.py --scan --packagePath \"/var/www/SPDXDash/uploads/$fileName\"";
+    $commandLine = "../../DoSPDX/src/DoSPDX.py --scan --packagePath \"uploads/$fileName\"";
     if(!empty($document_comment)) {
         $commandLine .= " --documentComment \"$document_comment\"";
     }
