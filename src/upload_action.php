@@ -18,7 +18,7 @@
     move_uploaded_file($filePath,"uploads/$fileName");
     while (!file_exists("uploads/$fileName")) sleep(1);
     
-    $commandLine = "../../DoSPDX/src/DoSPDX.py --scan --packagePath \"uploads/$fileName\"";
+    $commandLine = "../../DoSPDX/DoSPDX.py --scan --packagePath \"uploads/$fileName\"";
     if(!empty($document_comment)) {
         $commandLine .= " --documentComment \"$document_comment\"";
     }
