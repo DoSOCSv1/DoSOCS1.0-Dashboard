@@ -25,7 +25,7 @@ License
 
 Copyright
 ---------
-Copyright © 2014 Zachary McFarland
+Copyright © 2014 University of Nebraska at Omaha
 
 System Requirements
 -------------------
