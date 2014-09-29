@@ -1,4 +1,4 @@
-SPDXDash
+SOCSDashboard
 ======
 
 System Overview
@@ -9,7 +9,7 @@ System Overview
   </p>
   
   <p>
-  SPDXDash is a web based system used to manage a repo of SPDX documents. This system allows users to upload packages for scanning, and high defenition editing of those scanned documents.
+  SOCSDashboard is a web based system used to manage a repo of SOCS documents. This system allows users to upload packages for scanning, and high defenition editing of those scanned documents.
   </p>
 </div>
 
@@ -20,7 +20,7 @@ Current Version
 License
 -------
 <ul>
-  <li>Source Code: <a href="https://github.com/zwmcfarland/SPDXDash/blob/master/LICENSE">Apache 2.0</a></li>
+  <li>Source Code: <a href="https://github.com/socstools/SOCSDashboard/blob/master/LICENSE">Apache 2.0</a></li>
 </ul>
 
 Copyright
@@ -45,4 +45,4 @@ Installation
 - Download and run <a href="https://github.com/zwmcfarland/DoSPDX/blob/master/install.sh">install.sh</a> to the directory you want DoSPDX installed (Note: you may need to change the user name and password fields in install.sh)
 - Update settings.py with database connection information, and install locations of ninka and fossology.
 
-This will install <a href="https://github.com/zwmcfarland/DoSPDX">DoSPDX</a>, <a href="https://github.com/zwmcfarland/SPDXDash">SPDXDash</a>, and <a href="https://github.com/spdx-tools/Database">SPDX Database</a>. Also ensure you have execute rights on ninka and fossology.
+This will install <a href="https://github.com/socstools/DoSOCS">DoSPDX</a>, <a href="https://github.com/socstools/SOCSDashboard">SOCSDashboard</a>, and <a href="https://github.com/socstools/SOCSDatabase">SOCS Database</a>. Also ensure you have execute rights on ninka and fossology.
