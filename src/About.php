@@ -1,6 +1,6 @@
 <SPDX-License-Identifier: Apache-2.0>
 <!--
-Copyright 2014 Zac McFarland
+Copyright (C) 2014 University of Nebraska at Omaha.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -65,9 +65,8 @@ limitations under the License.
         FOSSology is a source code scanning tool used to identify license and copyright.
     </p>
     <p>
-        The University of Nebraska at Omaha Open Systems development class is currently creating other tools to facilitate the use of SPDX documents for the business setting. 
-        These tools include a web based dashboard to view SPDX documents in a more user friendly way. 
-        Another tool the class has been developing is the SPDX Product History Utility, which will allow business to associate products with software packages in order to inventory which software licenses and copyrights are on their products.
+        The University of Nebraska at Omaha Open Systems development class is currently creating other tools to facilitate the use of SOCS documents for the business setting. 
+        These tools include a web based dashboard to view SOCS documents in a more user friendly way. 
     </p>
 </div>
 <?php
