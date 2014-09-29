@@ -42,7 +42,7 @@ Prerequisites
 Installation
 ------------
 - Install Prerequisites
-- Download and run <a href="https://github.com/zwmcfarland/DoSPDX/blob/master/install.sh">install.sh</a> to the directory you want DoSPDX installed (Note: you may need to change the user name and password fields in install.sh)
+- Download and run <a href="https://github.com/zwmcfarland/DoSPDX/blob/master/install.sh">install.sh</a> to the directory you want DoSOCS installed (Note: you may need to change the user name and password fields in install.sh)
 - Update settings.py with database connection information, and install locations of ninka and fossology.
 
 This will install <a href="https://github.com/socstools/DoSOCS">DoSPDX</a>, <a href="https://github.com/socstools/SOCSDashboard">SOCSDashboard</a>, and <a href="https://github.com/socstools/SOCSDatabase">SOCS Database</a>. Also ensure you have execute rights on ninka and fossology.
