@@ -62,7 +62,7 @@ limitations under the License.
                         echo         '<a href="spdx_doc.php?doc_id=' . $row['id'] . '">' . $row['upload_file_name'] . '</a>';
                         echo     '</td>';
                         echo     '<td>';
-                        echo         date('d/j/o', strtotime($row['created_at'])); 
+                        echo         date('m/d/Y', strtotime($row['created_at'])); 
                         echo     '</td>';
                         echo     '<td style="text-align:right;">';
                         echo         '<div>';
