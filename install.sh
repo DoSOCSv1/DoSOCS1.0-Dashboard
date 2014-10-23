@@ -5,9 +5,9 @@ u=$USER
 p=$PWD
 
 #Clone Repos
-git clone https://github.com/socstools/SOCSDatabase
-git clone https://github.com/socstools/DoSOCS
-git clone https://github.com/socstools/SOCSDashboard
+git clone https://github.com/socs-dev-env/SOCSDatabase
+git clone https://github.com/socs-dev-env/DoSOCS
+git clone https://github.com/socs-dev-env/SOCSDashboard
 
 #Install Database
 echo "Install SOCS Database..."
