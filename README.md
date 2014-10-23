@@ -45,4 +45,4 @@ Installation
 - Download and run <a href="https://github.com/socs-dev-env/DoSOCS/blob/master/install.sh">install.sh</a> to the directory you want DoSOCS installed (Note: you may need to change the user name and password fields in install.sh)
 - Update settings.py with database connection information, and install locations of ninka and fossology.
 
-This will install <a href="https://github.com/socs-dev-env/DoSOCS">DoSOCS</a>, <a href="https://https://github.com/socs-dev-env/SOCSDashboard">SOCSDashboard</a>, and <a href="https://github.com/socs-dev-env/SOCSDatabase">SOCSDatabase</a>. Also ensure you have execute rights on ninka and fossology.
+This will install <a href="https://github.com/socs-dev-env/DoSOCS">DoSOCS</a>, <a href="https://github.com/socs-dev-env/SOCSDashboard">SOCSDashboard</a>, and <a href="https://github.com/socs-dev-env/SOCSDatabase">SOCSDatabase</a>. Also ensure you have execute rights on ninka and fossology.
