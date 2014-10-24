@@ -39,7 +39,7 @@ limitations under the License.
         return $qryPKGFiles;
     }
     
-    function getPackageFile($fileId) {
+    function getPackageFile($fileId, $docId) {
         //Create Database connection
         include("Data_Source.php");
         mysql_connect("$host", "$username", "$password")or die("cannot connect server " . mysql_error());
@@ -70,7 +70,7 @@ limitations under the License.
                 FROM package_files AS pf
                      LEFT OUTER JOIN licensings AS l ON pf.id = l.package_file_id
                      LEFT OUTER JOIN doc_license_associations AS dla ON dla.Id = l.doc_license_association_id
-                WHERE pf.Id = " . $fileId;
+                WHERE pf.Id = " . $fileId . " AND dla.spdx_doc_id = " . $docId;
         
         //Execute Query
         $qryPKGFile = mysql_query($sql);
