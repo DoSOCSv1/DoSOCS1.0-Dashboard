@@ -38,7 +38,7 @@ limitations under the License.
                        $_POST["file_comment"]);
         }
     }
-    $file = mysql_fetch_assoc(getPackageFile($fileId));
+    $file = mysql_fetch_assoc(getPackageFile($fileId, $spdxDocId));
 ?>
 <script>
     $(document).on('click','#edit_doc', function() {
