@@ -23,12 +23,13 @@ limitations under the License.
 
         //Query
         $sql  = "SELECT DISTINCT pf.*,
-                                 LENGTH( pf.relative_path ) - LENGTH( REPLACE( pf.relative_path,  '/',  '' ) ) AS level,
+                                 dfpa.relative_path,
+                                 LENGTH( dfpa.relative_path ) - LENGTH( REPLACE( dfpa.relative_path,  '/',  '' ) ) AS level,
                                  dfpa.package_id
                  FROM package_files pf
                       INNER JOIN doc_file_package_associations dfpa ON pf.id = dfpa.package_file_id
                  WHERE dfpa.spdx_doc_id = " . $spdx_doc_id . "
-                 ORDER BY pf.relative_path";
+                 ORDER BY dfpa.relative_path";
         
         //Execute Query
         $qryPKGFiles = mysql_query($sql);
@@ -57,7 +58,7 @@ limitations under the License.
                         license_info_in_file,
                         file_checksum,
                         file_checksum_algorithm,
-                        relative_path,
+                        dfpa.relative_path,
                         pf.license_comments,
                         file_notice,
                         file_contributor,
@@ -70,6 +71,7 @@ limitations under the License.
                 FROM package_files AS pf
                      LEFT OUTER JOIN licensings AS l ON pf.id = l.package_file_id
                      LEFT OUTER JOIN doc_license_associations AS dla ON dla.Id = l.doc_license_association_id
+                     LEFT OUTER JOIN doc_file_package_associations AS dfpa ON pf.id = dfpa.package_file_id
                 WHERE pf.Id = " . $fileId . " AND dla.spdx_doc_id = " . $docId;
         
         //Execute Query

@@ -21,6 +21,7 @@ limitations under the License.
     include("function/package.php");
     include("function/package_files.php");
     include("function/license.php");
+    include("function/tree.php");
     incHeader("SPDX");
     
     $spdxId = $_GET["doc_id"];
@@ -246,15 +247,66 @@ limitations under the License.
                 </tr>
             </thead>
             <tbody>
+                    <tr>
+            <td colspan=2>
                     <?php
                         $files = getPackageFiles($spdxId);
+                        $all_files = array();
                         while($row = mysql_fetch_assoc($files)) {
-                            echo '<tr>';
-                            echo     '<td>' . $row['relative_path'] . '</td>';
-                            echo     '<td><a href="file.php?file_id=' . $row['id'] . '&doc_id=' . $spdxId . '">View File Details</a></td>';
-                            echo '</tr>';
+                            $all_files[$row['relative_path']]=$row['id'];
                         }
-                    ?>
+                        
+                        $mAllTrees = array();
+    
+                       foreach($all_files as $file=> $fileId){
+                            if(strpos($file,'/') != FALSE){
+                               $path = substr($file,0,strrpos($file,'/'));
+                               $fileName = substr($file,strrpos($file,'/')+1);
+                               $root = substr($file,0,strpos($file,'/'));
+                               
+                               if(array_key_exists($root,$mAllTrees))
+                                    $tree = $mAllTrees[$root];
+                                else{
+                                    $tree = new Tree();
+                                    $tree->setSpdxId($spdxId);
+                                    $mAllTrees[$root] = $tree;
+                                }
+                                   
+                                                
+                               if($tree->hasPath($path)){
+                                  $tree->addFileToPath($path,$fileName.' - <a href="file.php?file_id=' . $all_files[$file]. '&doc_id=' . $spdxId . '">View File Details</a>',$all_files[$file]);
+                               }
+                               else{
+                                  $tree->createPath($path);
+                                  $tree->addFileToPath($path,$fileName.' - <a href="file.php?file_id=' . $all_files[$file]. '&doc_id=' . $spdxId . '">View File Details</a>',$all_files[$file]);
+                               }
+                            }
+                            else{
+                                $tree = new Tree();
+                                $tree->setSpdxId($spdxId);
+                                $tree->createNode($file.' - <a href="file.php?file_id=' . $all_files[$file]. '&doc_id=' . $spdxId . '">View File Details</a>',null);
+                                $tree->addFieldId($file,$all_files[$file]);
+                                //$tree->addFileToPath($fileName,$fileName,20);
+                                $mAllTrees[$file] = $tree;
+                            }
+                       }
+                       
+                       if(count($mAllTrees) > 0){
+                          $html = '';
+                          $html = $html.'<div class="tree"><ul>';
+                          foreach($mAllTrees as $root => $iTree){
+                            //$html = $html.$iTree->printTree($iTree->getRoot(),0);
+                            
+                            $html = $html.$iTree->printTreeNew($iTree->getRoot());
+                            
+                          }
+                          $html = $html.'</ul></div>';
+                          echo $html;
+                       }
+   
+                        ?>
+                    <td>
+                </tr>
             </tbody>
             <thead>
                 <tr>
