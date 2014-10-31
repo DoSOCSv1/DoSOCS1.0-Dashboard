@@ -92,6 +92,7 @@ limitations under the License.
                         <div style="display:inline-block;float:right;">
                             <button id="download_top" type="button"  class="btn btn-primary" onclick="window.open('download.php?doc_id=<?php echo $spdxId; ?>&format=RDF&doc_name=<?php echo $doc["package_name"];?>','_blank');">Download RDF</button>
                             <button id="download_top" type="button"  class="btn btn-primary" onclick="window.open('download.php?doc_id=<?php echo $spdxId; ?>&format=TAG&doc_name=<?php echo $doc["package_name"];?>','_blank');">Download TAG</button>
+                            <button id="download_top" type="button"  class="btn btn-primary" onclick="window.open('download.php?doc_id=<?php echo $spdxId; ?>&format=JSON&doc_name=<?php echo $doc["package_name"];?>','_blank');">Download JSON</button>
                             <button id="edit_doc"     type="button"  class="btn btn-primary view"/>Edit</button>
                             <button id="save_doc"     type="submit"  class="btn btn-primary edit" style="display:none;">Save</button>
                         </div>

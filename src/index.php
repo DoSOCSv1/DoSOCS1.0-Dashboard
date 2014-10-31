@@ -68,6 +68,7 @@ limitations under the License.
                         echo         '<div>';
                         echo             '<button type="button" class="btn" onclick="window.open(\'download.php?doc_id=' . $row['id'] . '&format=RDF&doc_name=' . $row['upload_file_name'] . '\',\'_blank\');">Download RDF</button>';
                         echo             '<button type="button" class="btn" onclick="window.open(\'download.php?doc_id=' . $row['id'] . '&format=TAG&doc_name=' . $row['upload_file_name'] . '\',\'_blank\');">Download TAG</button>';
+                        echo             '<button type="button" class="btn" onclick="window.open(\'download.php?doc_id=' . $row['id'] . '&format=JSON&doc_name=' . $row['upload_file_name'] . '\',\'_blank\');">Download JSON</button>';
                         echo             '<button type="button" class="btn" onclick="window.location=\'spdx_doc.php?doc_id=' . $row['id'] . '\'">View Details</button>';
                         echo         '</div>';
                         echo     '</td>';
