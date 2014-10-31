@@ -15,8 +15,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <?php
-    $host        ="localhost"; // Host name
-    $username    ="USERNAME"; // Mysql username
-    $password    ="PASSWORD";
-    $db_name    ="SPDX"; // Database nam
+    $host        = "localhost"; // Host name
+    $username    = "root"; // Mysql username
+    $password    = "star1234%";
+    $db_name     = "SPDX"; // Database name
+    $DoSOCS      = "~/DoSOCS/src/DoSPDX.py";
 ?>
