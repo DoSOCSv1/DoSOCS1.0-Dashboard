@@ -25,9 +25,14 @@ limitations under the License.
         $sql  = "SELECT DISTINCT pf.*,
                                  dfpa.relative_path,
                                  LENGTH( dfpa.relative_path ) - LENGTH( REPLACE( dfpa.relative_path,  '/',  '' ) ) AS level,
-                                 dfpa.package_id
+                                 dfpa.package_id,
+                                 dla.license_id,
+                                 le.license_name
                  FROM package_files pf
                       INNER JOIN doc_file_package_associations dfpa ON pf.id = dfpa.package_file_id
+                      LEFT OUTER JOIN licensings AS l ON pf.id = l.package_file_id
+                      LEFT OUTER JOIN doc_license_associations AS dla ON l.doc_license_association_id = dla.id
+                      LEFt OUTER JOIN licenses AS le ON dla.license_id = le.id
                  WHERE dfpa.spdx_doc_id = " . $spdx_doc_id . "
                  ORDER BY dfpa.relative_path";
         

@@ -248,12 +248,15 @@ limitations under the License.
             </thead>
             <tbody>
                     <tr>
-            <td colspan=2>
+            <td colspan="2">
                     <?php
                         $files = getPackageFiles($spdxId);
                         $all_files = array();
+                        $file_licenses = array();
                         while($row = mysql_fetch_assoc($files)) {
                             $all_files[$row['relative_path']]=$row['id'];
+                            $file_licenses[$row['relative_path']]['license_id'] = $row['license_id'];
+                            $file_licenses[$row['relative_path']]['license_name'] = $row['license_name'];
                         }
                         
                         $mAllTrees = array();
@@ -273,20 +276,21 @@ limitations under the License.
                                 }
                                    
                                                 
-                               if($tree->hasPath($path)){
-                                  $tree->addFileToPath($path,$fileName.' - <a href="file.php?file_id=' . $all_files[$file]. '&doc_id=' . $spdxId . '">View File Details</a>',$all_files[$file]);
-                               }
-                               else{
+                               if(!$tree->hasPath($path)) {
                                   $tree->createPath($path);
-                                  $tree->addFileToPath($path,$fileName.' - <a href="file.php?file_id=' . $all_files[$file]. '&doc_id=' . $spdxId . '">View File Details</a>',$all_files[$file]);
                                }
+                               $tree->addFileToPath($path,
+                                                    $fileName . ' - <a href="file.php?file_id=' . $all_files[$file]. '&doc_id=' . $spdxId . '">View File Details</a> - ' .
+                                                        $file_licenses[$file]['license_name'] . ' - <a href="license.php?license_id=' . $file_licenses[$file]['license_id'] . '&doc_id=' . $spdxId . '">View License Details</a>',
+                                                    $all_files[$file]);
                             }
                             else{
                                 $tree = new Tree();
                                 $tree->setSpdxId($spdxId);
-                                $tree->createNode($file.' - <a href="file.php?file_id=' . $all_files[$file]. '&doc_id=' . $spdxId . '">View File Details</a>',null);
+                                $tree->createNode($file . ' - <a href="file.php?file_id=' . $all_files[$file]. '&doc_id=' . $spdxId . '">View File Details</a> - ' . 
+                                        $file_licenses[$file]['license_name'] . ' - <a href="license.php?license_id=' . $file_licenses[$file]['license_id'] . '&doc_id=' . $spdxId . '">View License Details</a>'
+                                                  ,null);
                                 $tree->addFieldId($file,$all_files[$file]);
-                                //$tree->addFileToPath($fileName,$fileName,20);
                                 $mAllTrees[$file] = $tree;
                             }
                        }
@@ -295,34 +299,14 @@ limitations under the License.
                           $html = '';
                           $html = $html.'<div class="tree"><ul>';
                           foreach($mAllTrees as $root => $iTree){
-                            //$html = $html.$iTree->printTree($iTree->getRoot(),0);
-                            
                             $html = $html.$iTree->printTreeNew($iTree->getRoot());
-                            
                           }
                           $html = $html.'</ul></div>';
                           echo $html;
                        }
-   
-                        ?>
+                    ?>
                     <td>
                 </tr>
-            </tbody>
-            <thead>
-                <tr>
-                    <th colspan=2>Licenses</th>
-                </tr>
-            </thead>
-            <tbody>
-                    <?php
-                        $licenses = getDocLicenses($spdxId);
-                        while($row = mysql_fetch_assoc($licenses)) {
-                            echo '<tr>';
-                            echo     '<td>' . $row['license_identifier'] . '</td>';
-                            echo     '<td><a href="license.php?license_id=' . $row['license_id'] . '&doc_id=' . $spdxId . '">View License Details</a></td>';
-                            echo '</tr>';
-                        }
-                    ?>
             </tbody>
         </table>
     </form>
