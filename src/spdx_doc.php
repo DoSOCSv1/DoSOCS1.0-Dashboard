@@ -43,6 +43,7 @@ limitations under the License.
         }
     }
     $doc = mysql_fetch_assoc(getSPDX_Doc($spdxId));
+    $licCounts = getLicenseCounts($spdxId);
 ?>
 <style>
     a.tooltip {outline:none; }
@@ -70,6 +71,7 @@ limitations under the License.
         box-shadow: 5px 5px 8px #CCC;
     }
 </style>
+<script src="js/Chart.js"></script>
 <script>
     $(document).on('click','#edit_doc', function() {
         $('.edit').show();
@@ -308,9 +310,51 @@ limitations under the License.
                     <td>
                 </tr>
             </tbody>
+            <thead>
+                <tr>
+                    <td colspan="2">License Breakdown</td>
+                </tr>
+            </thead>
+            <tbody>
+            	<tr>
+            		<td colspan="2">
+            			<div align="center">
+            				<canvas id="licChart" width="400" height="400"></canvas>
+            			</div>
+            		</td>
+            	</tr>
+            </tbody>
         </table>
     </form>
 </div>
+<script>
+    var pieData = [
+       <?php $count = 0;?>
+       <?php while($row = mysql_fetch_assoc($licCounts)):?>
+            {
+                value: <?php echo $row['numLicenses']; ?>,
+                label: "<?php echo $row['license_name']; ?>",
+                color: getRandomColor(),
+                highlight: '#D8D8D8'
+            }
+            <?php $count = $count +1;?>
+            <?php if($count != mysql_num_rows($licCounts)):?>,<?php endif;?>
+       <?php endwhile;?>
+    ];
+
+    window.onload = function(){
+        var ctx = document.getElementById("licChart").getContext("2d");
+        window.myPie = new Chart(ctx).Pie(pieData,{segmentShowStroke : true,legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"});
+    };
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</script>
 <?php
     incFooter();
 ?>
