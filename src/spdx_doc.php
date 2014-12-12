@@ -70,6 +70,15 @@ limitations under the License.
         -webkit-box-shadow: 5px 5px 8px #CCC;
         box-shadow: 5px 5px 8px #CCC;
     }
+    .legend li span {
+	    width: 1em;
+	    height: 1em;
+	    display: inline-block;
+	    margin-right: 5px;
+	}
+	.legend {
+	    list-style: none;    
+	}
 </style>
 <script src="js/Chart.js"></script>
 <script>
@@ -321,6 +330,7 @@ limitations under the License.
             			<div align="center">
             				<canvas id="licChart" width="400" height="400"></canvas>
             			</div>
+            			<div id="legend"></div>
             		</td>
             	</tr>
             </tbody>
@@ -344,7 +354,12 @@ limitations under the License.
 
     window.onload = function(){
         var ctx = document.getElementById("licChart").getContext("2d");
-        window.myPie = new Chart(ctx).Pie(pieData,{segmentShowStroke : true,legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"});
+        var options = {
+                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%> !important;\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+        };
+        var myPie = new Chart(ctx).Pie(pieData,options);
+        var legend = myPie.generateLegend();
+        $("#legend").html(legend);
     };
     function getRandomColor() {
         var letters = '0123456789ABCDEF'.split('');
