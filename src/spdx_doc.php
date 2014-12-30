@@ -343,7 +343,7 @@ limitations under the License.
        <?php while($row = mysql_fetch_assoc($licCounts)):?>
             {
                 value: <?php echo $row['numLicenses']; ?>,
-                label: "<?php echo $row['license_name']; ?>",
+                label: "<?php echo str_replace(array("\r\n", "\n", "\r"), '', $row['license_name']); ?>",
                 color: getRandomColor(),
                 highlight: '#D8D8D8'
             }
