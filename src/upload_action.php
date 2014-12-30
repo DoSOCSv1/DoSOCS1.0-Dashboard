@@ -31,6 +31,7 @@ limitations under the License.
     $package_source_info        = $_POST['package_source_info'];
     $package_license_comments   = $_POST['package_license_comments'];
     $package_description        = $_POST['package_description'];
+    $scan_option		= $_POST['scan_option'];
 
     move_uploaded_file($filePath,"uploads/$fileName");
     while (!file_exists("uploads/$fileName")) sleep(1);
@@ -68,6 +69,9 @@ limitations under the License.
     }
     if(!empty($package_description)) {
         $commandLine .= " --documentComment \"$package_description\"";
+    }
+    if(!empty($scan_option)) {
+        $commandLine .= " --scanOption \"$scan_option\"";
     }
 
     shell_exec($commandLine . ' 2>&1');
