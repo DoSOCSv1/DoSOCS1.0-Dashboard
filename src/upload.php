@@ -68,6 +68,12 @@ limitations under the License.
             <label for="txtPackageDescription">Package Description</label>
             <input type="text" id="txtPackageDescription" name="package_description" class="form-control"/>
         </div>
+        <div class="form-group">
+            <label for="txtScanOption">Scan Option</label>
+            <select name="scan_option" id="selectScanOption"  size="2" class="form-control">
+            <option value="fossology">fossology</option>
+            <option value="fossology+ninka">fossology+ninka</option></select>
+        </div>
         <input type="submit" value="submit">
     </form>
 </div>
