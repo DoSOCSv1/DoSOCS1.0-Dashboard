@@ -149,11 +149,11 @@ limitations under the License.
                 </tr>
                 <tr>
                     <td title="When was this SPDX document created.">Created</td>
-                    <td><?php echo date('d/j/o', strtotime($doc["created_at"])); ?></td>
+                    <td><?php echo date('m/d/Y', strtotime($doc["created_at"])); ?></td>
                 </tr>
                 <tr>
                     <td title="When was this document last updated.">Updated</td>
-                    <td><?php echo date('d/j/o', strtotime($doc["updated_at"])); ?></td>
+                    <td><?php echo date('m/d/Y', strtotime($doc["updated_at"])); ?></td>
                 </tr>
                 <tr>
                     <td title="Additional comments from during the creation of this document.">Creator Comment</td>
